@@ -1,0 +1,193 @@
+.launchData {
+    margin-left: -3%;
+    flex-flow: wrap;
+}
+
+.inner-launch-item {
+    background: #fff;
+    height: 411px;
+    margin-top: 2%;
+  
+    img {
+      background: #DCDCDC;
+      width: 14em;
+    }
+  
+    li,
+      p {
+      color: #98afc7;
+    }
+  
+    .launch-title {
+      color: #2b65ec;
+      flex-flow: wrap;
+    }
+
+    .commonText{
+        color: black;
+    }
+
+    .forDynaimcData{
+        color: #98afc7;
+    }
+  }
+
+  .flex-container {
+    flex-wrap: wrap;
+  }
+  
+  @media screen and (min-width: 700px) {
+    .launch-item {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .launch-item {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+.main-launch {
+    margin-top: -2%;
+    margin-left: -1%;
+    flex-flow: wrap;
+}
+
+.year {
+    // margin-top: 18%;
+    // background-color: white;
+    // color: black;
+    // display: flex;
+    // height: 84%;
+    // margin-left: 22%;
+    // margin-top: 2%;
+    // background-color: white;
+    // color: black;
+    // display: flex;
+    // height: 121%;
+    // margin-left: 10%;
+    // width: 76%;
+    // flex-flow: wrap;
+    // margin-top: 2%;
+    // background-color: white;
+    // color: black;
+    // display: flex;
+    // height: 120%;
+    // margin-left: 10%;
+    // width: 76%;
+    // flex-flow: wrap;
+        margin-top: 2%;
+    background-color: white;
+    color: black;
+    display: flex;
+    height: 120%;
+    margin-left: 3%;
+    width: 13%;
+    flex-flow: wrap;
+  }
+
+// .yearConstantData{
+//     margin-top: 124%;
+// }
+
+.launchBoard {
+    margin-left: 7%;
+    flex-flow: wrap;
+}
+
+.yearLink {
+    display: flex;
+    width: 490px;
+    color: black;
+    background:#A9DFBF;
+    width: 1%;
+    cursor: pointer;
+    height: 2.4em;
+    border-radius: 0.3em;
+    margin-top: 8%;
+  }
+
+.afterClick:focus {
+    background:green;
+}
+
+.filterMain {
+    margin-right: 65px;
+    display: flex;
+}
+
+.main {
+    font-weight: bolder;
+}
+  
+.sub-header {
+    border-bottom: 0px solid;
+    justify-self: center;
+    display: flex;
+    margin-top: -12%;
+  }
+
+.sub-header1 {
+    border-bottom: 0px solid;
+    justify-self: center;
+    display: flex;
+    margin-top: -12%;
+    margin-left: 17%;
+  }
+
+.filterDataMain {
+    margin-top: 7%;
+    margin-left: 12%;
+}
+
+.launchLanding {
+    margin-right: -3%;
+    margin-left: 20%;
+}
+
+.footer {
+    margin-top: 3%;
+    font-size: unset;
+    margin-bottom: 2%;
+    display: flex;
+}
+
+.developBy {
+    font-weight: bolder;
+}
+
+.launchUndrline {
+    border-bottom:2px solid #DCDCDC;
+    font-weight: 500;
+    display: flex;
+}
+
+.launchUndrline1 {
+    border-bottom:2px solid #DCDCDC;
+    font-weight: 500;
+    display: flex;
+}
+
+.launchUndrline2 {
+    border-bottom:2px solid #DCDCDC;
+    font-weight: 500;
+    display: flex;
+}
+
+.filtertxt {
+    font-size: large;
+    font-weight: 600;
+}
+
+.yearWithFlex{
+    flex-flow: wrap;
+}
+
+.mainLaunch{
+    // margin-left: 14%;
+    // margin-top: -31%;
+    margin-left: 20%;
+    margin-top: -31%;
+    display: flex;
+}   
