@@ -1,193 +1,216 @@
-.launchData {
-    margin-left: -3%;
-    flex-flow: wrap;
+@media screen and (min-width: 1024px) {
+  .container {
+      max-width: 1260px;
+  }
 }
 
-.inner-launch-item {
-    background: #fff;
-    height: 411px;
-    margin-top: 2%;
-  
-    img {
-      background: #DCDCDC;
-      width: 14em;
-    }
-  
-    li,
-      p {
-      color: #98afc7;
-    }
-  
-    .launch-title {
-      color: #2b65ec;
-      flex-flow: wrap;
-    }
 
-    .commonText{
-        color: black;
-    }
-
-    .forDynaimcData{
-        color: #98afc7;
-    }
+@media screen and (max-width: 700px) {
+  .grid-container {
+      display: grid;
+      grid-template-areas:
+          'header'
+          'menu'
+          'main'
+          'footer' !important;
+      grid-gap: 15px;
+      padding: 10px;
   }
-
-  .flex-container {
-    flex-wrap: wrap;
-  }
-  
-  @media screen and (min-width: 700px) {
-    .launch-item {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media screen and (min-width: 1024px) {
-    .launch-item {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
 }
 
-.main-launch {
-    margin-top: -2%;
-    margin-left: -1%;
-    flex-flow: wrap;
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.year {
-    // margin-top: 18%;
-    // background-color: white;
-    // color: black;
-    // display: flex;
-    // height: 84%;
-    // margin-left: 22%;
-    // margin-top: 2%;
-    // background-color: white;
-    // color: black;
-    // display: flex;
-    // height: 121%;
-    // margin-left: 10%;
-    // width: 76%;
-    // flex-flow: wrap;
-    // margin-top: 2%;
-    // background-color: white;
-    // color: black;
-    // display: flex;
-    // height: 120%;
-    // margin-left: 10%;
-    // width: 76%;
-    // flex-flow: wrap;
-        margin-top: 2%;
-    background-color: white;
-    color: black;
-    display: flex;
-    height: 120%;
-    margin-left: 3%;
-    width: 13%;
-    flex-flow: wrap;
-  }
-
-// .yearConstantData{
-//     margin-top: 124%;
-// }
-
-.launchBoard {
-    margin-left: 7%;
-    flex-flow: wrap;
+.header {
+  grid-area: header;
 }
 
-.yearLink {
-    display: flex;
-    width: 490px;
-    color: black;
-    background:#A9DFBF;
-    width: 1%;
-    cursor: pointer;
-    height: 2.4em;
-    border-radius: 0.3em;
-    margin-top: 8%;
-  }
-
-.afterClick:focus {
-    background:green;
-}
-
-.filterMain {
-    margin-right: 65px;
-    display: flex;
+.menu {
+  grid-area: menu;
 }
 
 .main {
-    font-weight: bolder;
-}
-  
-.sub-header {
-    border-bottom: 0px solid;
-    justify-self: center;
-    display: flex;
-    margin-top: -12%;
-  }
-
-.sub-header1 {
-    border-bottom: 0px solid;
-    justify-self: center;
-    display: flex;
-    margin-top: -12%;
-    margin-left: 17%;
-  }
-
-.filterDataMain {
-    margin-top: 7%;
-    margin-left: 12%;
+  grid-area: main;
+  margin: 0;
 }
 
-.launchLanding {
-    margin-right: -3%;
-    margin-left: 20%;
+.no-data-main {
+  margin: auto !important;
 }
 
 .footer {
-    margin-top: 3%;
-    font-size: unset;
-    margin-bottom: 2%;
-    display: flex;
+  grid-area: footer;
+  bottom: 0;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  background-color: #f3f3f3cc;
+  padding: 10px 0;
 }
 
-.developBy {
-    font-weight: bolder;
+.grid-container {
+  display: grid;
+  grid-template-areas:
+      'header header header header header header'
+      'menu main main main main main'
+      'footer footer footer footer footer footer';
+  grid-gap: 15px;
+  padding: 10px;
 }
 
-.launchUndrline {
-    border-bottom:2px solid #DCDCDC;
-    font-weight: 500;
-    display: flex;
+h2,
+h3 {
+  margin: 0;
 }
 
-.launchUndrline1 {
-    border-bottom:2px solid #DCDCDC;
-    font-weight: 500;
-    display: flex;
+.no-data-found {
+  text-align: center;
+  color: gray;
+  font-size: 30px;
+  font-weight: bold;
 }
 
-.launchUndrline2 {
-    border-bottom:2px solid #DCDCDC;
-    font-weight: 500;
-    display: flex;
+.card {
+  background-color: white;
+  padding: 16px;
+  border-radius: 15px;
+  min-width: 220px;
+  max-width: 260px;
+  margin-top: 10px;
 }
 
-.filtertxt {
-    font-size: large;
-    font-weight: 600;
+@media screen and (max-width: 700px) {
+  .card {
+      max-width: none;
+  }
 }
 
-.yearWithFlex{
-    flex-flow: wrap;
+
+
+
+h4 {
+  margin: 0;
 }
 
-.mainLaunch{
-    // margin-left: 14%;
-    // margin-top: -31%;
-    margin-left: 20%;
-    margin-top: -31%;
-    display: flex;
-}   
+.filter-heading {
+  text-align: center;
+}
+
+.button {
+  background-color: #C5E09B;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.button-active {
+  background-color: #7CBA01;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button-active:hover {
+  cursor: pointer;
+}
+
+.button-container {
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: auto auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 230px 230px 230px 230px;
+}
+
+@media screen and (max-width: 1024px) {
+  .grid-container {
+      display: grid;
+      grid-column-gap: 20px;
+      grid-template-columns: auto auto;
+  }
+
+  .grid-item {
+      max-width: none !important;
+  }
+
+  img {
+      height: auto !important;
+      width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .grid-container {
+      display: grid;
+      grid-column-gap: 20px;
+      grid-template-columns: auto;
+  }
+
+  .grid-item {
+      max-width: none !important;
+  }
+
+  img {
+      height: auto !important;
+      width: 100%;
+  }
+}
+
+.grid-item {
+  background-color: white;
+  font-size: 20px;
+  padding: 16px;
+  border-radius: 15px;
+  min-width: 200px;
+  max-width: 200px;
+  margin: 10px 0;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.card-details {
+  max-width: 200px;
+}
+
+img {
+  background-color: #f3f3f3cc;
+  text-align: center;
+}
+
+.heading {
+  font-size: 16px;
+  font-weight: bold;
+  color: #515096;
+}
+
+.sub-heading {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.answer-text {
+  font-size: 16px;
+  color: #515096;
+}

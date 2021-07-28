@@ -1,102 +1,161 @@
-<div>
-    <h1 class="main" fxLayoutAlign="start center">SpaceX Launch Programs</h1>
-</div>
+<div class="container">
+    <div class="grid-container">
+  
+      <div class="header">
+        <h2>SpaceX Launch Programs</h2>
+      </div>
+  
+      <div class="menu">
+        <div class="card">
 
-<div fxLayout="column" fxLayoutGap="40px" fxLayoutAlign="space-evenlycenter">
-    <div class="main-launch" fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="space-evenlycenter">
-        <!--Filter div-->
-        <div class="filterMain">
-            <mat-card class="year">
-                <div><span class="filtertxt">Filters</span></div>
-                <div fxLayout="column">
-                    <div class="sub-header" fxLayoutAlign="space-around center"><label class="launchUndrline">Launch
-                            Year</label></div>
-                    <div class="filterDataMain" fxLayout="column">
-                        <div class="yearWithFlex" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-evenlycenter">
-                            <div class="yearConstantData" *ngFor="let year of yearValues">
-                                <button class="yearLink" mat-raised-button [class.afterClick]='appliedYear'
-                                    (click)="clickOnYear( year )">{{ year.value }}</button>
+            <h4>Filters</h4>
+        
+            <div>
+        
+                <div class="filter-heading">
+                    <p>Launch Year</p>
+                    <hr>
+                </div>
+        
+                <div class="button-container">
+                    <div *ngFor="let year of yearValues">
+                        <button class="button-active" *ngIf="year.year == launch_year"
+                            (click)="onClickLaunchYearFilter(year.year)">{{year.year}}</button>
+                        <button class="button" *ngIf="year.year != launch_year"
+                            (click)="onClickLaunchYearFilter(year.year)">{{year.year}}</button>
+                    </div>
+                </div>
+        
+            </div>
+        
+            <div>
+        
+                <div class="filter-heading">
+                    <p>Successfull Launch</p>
+                    <hr>
+                </div>
+        
+                <div class="button-container">
+                    <div *ngFor="let launch of launchValues">
+                        <button class="button-active" *ngIf="launch_success == launch.success"
+                            (click)="onClickLaunchSuccess(launch.success)">{{launch.success | titlecase}}</button>
+                        <button class="button" *ngIf="launch_success != launch.success"
+                            (click)="onClickLaunchSuccess(launch.success)">{{launch.success | titlecase}}</button>
+                    </div>
+                </div>
+        
+            </div>
+        
+            <div>
+        
+                <div class="filter-heading">
+                    <p>Successfull Landing</p>
+                    <hr>
+                </div>
+        
+                <div class="button-container">
+        
+                    <div *ngFor="let land of landingValues">
+                        <button class="button-active" *ngIf="land_success == land.success"
+                            (click)="onClickLandSuccess(land.success)">{{land.success | titlecase}}</button>
+                        <button class="button" *ngIf="land_success != land.success"
+                            (click)="onClickLandSuccess(land.success)">{{land.success | titlecase}}</button>
+                    </div>
+                </div>
+        
+            </div>
+        
+        
+        
+        </div>
+      </div>
+  
+      <div class="main">
+        <div class="grid-container">
+
+            <ng-container *ngIf="!service.loadingData">
+                <div class="grid-item" *ngFor="let data of service.SpaceXData">
+                    <div class="card">
+                        <div class="card-image">
+                            <img [src]="data.links.mission_patch" alt="mission_image" height="200">
+                        </div>
+        
+                        <div>
+                            <div class="heading">
+                                <p>{{data.mission_name}} #{{data.flight_number}}</p>
+                            </div>
+        
+                            <div>
+                                <p class="sub-heading">Mission IDs:</p>
+        
+                                <ul>
+                                    <li class="answer-text" *ngIf="data.mission_id.length == 0">No IDs Found!</li>
+                                    <li class="answer-text" *ngIf="data.mission_id.length>0">{{data.mission_id[0]}}</li>
+                                </ul>
+                            </div>
+        
+                            <div>
+                                <span class="sub-heading"> Launch Year :</span> <span
+                                    class="answer-text">{{data.launch_year}}</span>
+                            </div>
+        
+                            <div>
+                                <span class="sub-heading"> Successfull Launch: </span> <span
+                                    class="answer-text">{{data.launch_success}}</span>
+                            </div>
+        
+                            <div>
+                                <span class="sub-heading"> Successfull Landing : </span> <span
+                                    class="answer-text">{{data.launch_landing}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="sub-header1" fxLayoutAlign="space-around center"><label class="launchUndrline1">Successful
-                        Launch</label></div>
-                <div fxLayout="row">
-
-                    <div class="launchLanding" fxLayout="column" fxLayoutGap="40px" fxLayoutAlign="space-between center"
-                        *ngFor="let launch of launchValues">
-                        <!-- <div fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="space-evenlycenter"> -->
-                        <button id="landId" class="yearLink" mat-raised-button [class.afterClick]='isLaunched'
-                            (click)="clickOnLaunch('launchValues', launch )">{{launch.value}}</button>
-                        <!-- </div> -->
+            </ng-container>
+        
+        
+            <ng-container *ngIf="this.service.loadingData">
+                <div class="grid-item" *ngFor="let loader of LoaderArray">
+                    <div class="card">
+                        <div class="card-image">
+                            <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
+                        </div>
+        
+                        <div>
+                            <div class="heading">
+                                <ngx-skeleton-loader count="1"></ngx-skeleton-loader>
+                            </div>
+        
+                            <div>
+                                <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+                            </div>
+        
+                            <div>
+                                <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+                            </div>
+        
+                            <div>
+                                <ngx-skeleton-loader count="2"></ngx-skeleton-loader>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="sub-header1" fxLayoutAlign="space-around center"><label class="launchUndrline2">Successful
-                        Landing</label></div>
-                <div fxLayout="row">
-                    <div class="launchLanding" fxLayout="column" fxLayoutAlign="space-evenlycenter"
-                        *ngFor="let landing of landingValues">
-                        <!-- <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-evenlycenter"> -->
-                        <button class="yearLink" mat-raised-button [class.afterClick]='isLanded'
-                            (click)="clickOnLand('landingValues', landing )">{{landing.value}}</button>
-                        <!-- </div> -->
-                    </div>
-                </div>
-            </mat-card>
+            </ng-container>
+        
         </div>
-
-        <!-- launch data store in dataArray-->
-        <!-- <div class="mainLaunch" fxLayout="column" fxLayoutGap="65px" fxLayoutAlign="space-evenlycenter"> -->
-        <div class="launchBoard mainLaunch" fxLayout="row" fxLayoutGap="55px" fxLayoutAlign="start center">
-            <mat-card fxLayout="column" class="inner-launch-item" *ngFor="let dataArray of rocketData">
-                <img src="{{ dataArray.links.mission_patch_small }}" />
-                <h4 class="launch-title no-margin pt-xs c-fit-width">
-
-                    <!-- mission name & flight number-->
-                    {{ dataArray.mission_name }} #{{ dataArray.flight_number }}
-                </h4>
-
-                <!-- mission Ids-->
-                <h4 class="no-margin pt-xs c-fit-width commonText">Mission Ids:
-                    <label class="forDynaimcData" *ngFor="let id of dataArray.mission_id">{{ id }}
-                    </label>
-                </h4>
-                <div class="d-flex c-fit-width">
-
-                    <!-- mission launch year-->
-                    <h4 class="no-margin pt-xs c-fit-width commonText">Launch Year:
-                        <label class="forDynaimcData">
-                            {{ dataArray.launch_year }}
-                        </label>
-                    </h4>
-                </div>
-
-                <!-- mission launch success-->
-                <div class="d-flex c-fit-width">
-                    <h4 class="no-margin pt-xs c-fit-width commonText">Successful Launch:
-                        <label class="forDynaimcData">
-                            {{ dataArray.launch_success }}
-                        </label>
-                    </h4>
-                </div>
-
-                <!-- mission landing success-->
-                <div class="d-flex c-fit-width">
-                    <h4 class="no-margin pt-xs c-fit-width commonText">Successful Landing:
-                        <label class="forDynaimcData">
-                            {{ dataArray.rocket.first_stage.cores[0].land_success }}
-                        </label>
-                    </h4>
-                </div>
-            </mat-card>
+      </div>
+  
+      <div class="main no-data-main" *ngIf="service.SpaceXData.length == 0 && service.loadingData== false">
+  
+        <div class="no-data-found">
+          No Data Found!
         </div>
+  
+      </div>
+  
+      <div class="footer">
+        <h3>Developed by Abhijeet Singh</h3>
+      </div>
+  
     </div>
-    <!-- </div> -->
-
-    <!--Developer name-->
-    <br><br>
-    <div class="footer" fxLayoutAlign="center"><label class="developBy">developed by:</label>&nbsp;
-        {{ developerName }}<br>
-    </div>
-</div>
+  </div>

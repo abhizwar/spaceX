@@ -12,125 +12,34 @@ import { LAUNCH_VALUE, LANDING_VALUE, YEARS_VALUE } from '../constants/constants
 export class PlatFormComponent implements OnInit {
 
   [x: string]: any;
+  LoaderArray: any = [1,2,3,4,5,6,7,8]
+  launch_year: any = '';
+  launch_success: any = '';
+  land_success: any = '';
 
-  constructor(private service: ApiServicesService, private route: ActivatedRoute, private router: Router) { }
-
-  developerName: any = "Abhijeet Singh"
-  rocketData: any
-  launchList: LaunchData[] = [];
-  yearValues: any;
-  launchValues: any
-  landingValues: any
-  year: any
-  launch: any
-  landing: any
-  appliedYear: any
-  isLanded: any
-  isLaunched: any
+  constructor(public service: ApiServicesService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getValues();
-    this.queryParameter()
+    this.service.getSpaceXData('','', '');
   }
 
-
-  /**
-   * Get the query params from url
-   */
-  queryParameter() {
-    this.route.queryParamMap.subscribe((params) => {
-      this.appliedYear = params.get('year');
-      this.isLanded = params.get('landing');
-      this.isLaunched = params.get('launch');
-      
-      // Service call
-      this.homePage();
-    });
+  onClickLaunchYearFilter(year: any) {
+    this.launch_year = year;
+    this.service.getSpaceXData(this.launch_success, this.land_success, this.launch_year);
   }
 
-  /**
-   * set default limit 20
-   */
-  limit: number = 20;
-
-  /**
-   * @param {SelectedFilter} : get the value after click on event for year filter 
-   */
-  clickOnYear(SelectedFilter: Filters) {
-    if (this.appliedYear === SelectedFilter.value) {
-      delete this.appliedYear
-    } else {
-      this.appliedYear = SelectedFilter.value;
-    }
-    this.rootPage()
+  onClickLaunchSuccess(data:any) {
+    this.launch_success = data;
+    this.service.getSpaceXData(this.launch_success, this.land_success, this.launch_year);
   }
 
-  /**
-   * @param {field} : get the properties of click event from constant data
-   * @param {SelectedFilter} : get the value after click on event for launch filter
-   */
-  clickOnLaunch(field: string, SelectedFilter: Filters) {
-    this.MappingFromClick(field, SelectedFilter);
-    if (this.isLaunched === SelectedFilter.value) {
-      delete this.isLaunched
-    } else {
-      this.isLaunched = SelectedFilter.value;
-    }
-    this.rootPage();
+  onClickLandSuccess(data:any) {
+    this.land_success = data;
+    this.service.getSpaceXData(this.launch_success, this.land_success, this.launch_year);
   }
-
-  /**
-   *@param {field} : get the properties of click event from constant data
-   * @param {SelectedFilter} : get the value after click on event for land filter
-   */
-  clickOnLand(field: string, SelectedFilter: Filters) {
-    this.MappingFromClick(field, SelectedFilter);
-    if (this.isLanded === SelectedFilter.value) {
-      delete this.isLanding
-    } else {
-      this.isLanding = SelectedFilter.value;
-    }
-    this.rootPage()
-  }
-
-
-  /**
-   * @param field mapped values
-   * @param Properties getting all the values
-   */
-  MappingFromClick(field: any, properties: any) {
-    this[field].map((property: { isSelected: boolean; value: any; year: number }) => {
-
-      // condition based on click event
-      property.isSelected = property.value === properties.value ? !property.value : false;
-    });
-
-  }
-
-  /* method to call rootpage for filters */
-  rootPage() {
-    this.router.navigate(['/root'], {
-      queryParams: {
-        year: this.appliedYear,
-        launch: this.isLaunched,
-        landing: this.isLanding,
-      },
-    });
-  }
-
-  /* method to call the home page */
-  homePage() {
-    this.service.getMethod(this.appliedYear, this.isLaunched, this.isLanding, this.limit).subscribe((Data: LaunchData[]) => {
-      this.rocketData = Data;
-    },
-      (error: any) => {
-        return error
-      }
-    )
-  }
-
-  // get all the filter constant data
-  getValues() {
+   // get all the filter constant data
+   getValues() {
     this.launchValues = LAUNCH_VALUE;
     this.landingValues = LANDING_VALUE;
     this.yearValues = YEARS_VALUE;

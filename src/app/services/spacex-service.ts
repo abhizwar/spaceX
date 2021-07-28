@@ -7,31 +7,25 @@ import { LaunchData } from '../models/models';
 })
 export class ApiServicesService {
 
+  loadingData: any = false;
+
+  SpaceXData: any = [];
   constructor(private http: HttpClient) { }
 
-  private parentUrl = 'https://api.spacexdata.com/v3';
+  BASE_URL: any = 'https://api.spaceXdata.com/v3/launches?limit=100';
 
-  getMethod(year: string, launch: string, landing: string, limit: number) {
-    let homeUrl = `${this.parentUrl}/launches?limit=${limit}`;
+  getSpaceXDataAPI(launch_success?: any, land_success?: any, launch_year?: any) {
+    return this.http.get(this.BASE_URL + '&launch_success=' + launch_success + '&land_success=' + land_success + '&launch_year=' + launch_year);
+  }
 
-    //if year is present
-    if (year) {
-      homeUrl = homeUrl + `&launch_year=${year}`;
-    }
-
-    //if launch filter is applicable
-    if (launch) {
-      const launches = launch === 'Yes' ? true : false;
-      homeUrl = homeUrl + `&launch_success=${launches}`;
-    }
-
-    // if landing filter is applicable
-    if (landing) {
-      const landed = landing === 'Yes' ? true : false;
-      homeUrl = homeUrl + `&land_success=${landed}`;
-    }
-
-    return this.http.get<LaunchData[]>(homeUrl)
+  getSpaceXData(launch_success?: any, land_success?: any, launch_year?: any) {
+    this.loadingData = true;
+    this.getSpaceXDataAPI(launch_success, land_success, launch_year)
+      .subscribe((response: any) => {
+        console.log(response);
+        this.SpaceXData = response;
+        this.loadingData = false;
+      })
   }
 
 }
