@@ -8,9 +8,9 @@ const ngApp = express();
 /**
  * connected with the project
  */
-ngApp.use(express.static('./dist'));
+ngApp.use(express.static('./dist/spaceX'));
 ngApp.get('/*', function (request, response) {
-    response.sendFile(path.join(__dirname, '/dist/index.html'));
+    response.sendFile(path.join(__dirname, '/dist/spaceX/index.html'));
 });
 
 /**
